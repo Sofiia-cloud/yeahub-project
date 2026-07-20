@@ -1,11 +1,11 @@
-import Questions from "../components/Questions/Questions";
-import FilterPanel from "../components/FilterPanel/FilterPanel";
+import Questions from "../../widgets/QuestionsList/QuestionsList";
+import FilterPanel from "../../widgets/FilterPanel/FilterPanel";
 import {
   useGetSkillsQuery,
   useGetSpecializationsQuery,
-} from "../services/api/filtersApi";
+} from "../../features/filter/api/filtersApi";
 import { useState } from "react";
-import { useGetQuestionsQuery } from "../services/api/questionsApi";
+import { useGetQuestionsQuery } from "../../features/questions/api/questionsApi";
 
 interface FiltersState {
   page: number;

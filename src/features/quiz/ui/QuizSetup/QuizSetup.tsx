@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "../../../../app/store/hooks";
 import {
   useGetSkillsQuery,
   useGetSpecializationsQuery,
-} from "../../services/api/filtersApi";
-import { useLazyGetInterviewQuery } from "../../services/api/interviewApi";
-import { startQuiz } from "../../store/slices/quizSlice";
+} from "../../../filter/api/filtersApi";
+import { useLazyGetInterviewQuery } from "../../../quiz/api/interviewApi";
+import { startQuiz } from "../../../../app/store/slices/quizSlice";
 import styles from "./QuizSetups.module.css";
 
 interface QuizSetupForm {

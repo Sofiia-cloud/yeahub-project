@@ -2,9 +2,9 @@ import { Pagination } from "../Pagination/Pagination";
 
 import styles from "./QuestionsList.module.css";
 import { useState } from "react";
-import Question from "../Question/Question";
+import Question from "../../features/questions/ui/QuestionItem/QuestionItem";
 
-import type { QuestionsResponse } from "../../services/types";
+import type { QuestionsResponse } from "../../entities/question/model/types";
 interface QuestionsProps {
   questions: QuestionsResponse;
   pageNumber: number;

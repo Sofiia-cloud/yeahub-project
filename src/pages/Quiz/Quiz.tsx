@@ -1,7 +1,7 @@
-import QuizQuestion from "../../components/QuizQuestion/QuizQuestion";
-import QuizResult from "../../components/QuizResult/QuizResult";
-import QuizSetup from "../../components/QuizSetup/QuizSetup";
-import { useAppSelector } from "../../store/hooks";
+import QuizQuestion from "../../features/quiz/ui/QuizQuestion/QuizQuestion";
+import QuizResult from "../../features/quiz/ui/QuizResult/QuizResult";
+import QuizSetup from "../../features/quiz/ui/QuizSetup/QuizSetup";
+import { useAppSelector } from "../../app/store/hooks";
 import styles from "./Quiz.module.css";
 
 export default function Quiz() {

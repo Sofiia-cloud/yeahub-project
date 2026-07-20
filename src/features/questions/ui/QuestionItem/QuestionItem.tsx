@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./QuestionItem.module.css";
-import LevelTag from "../LevelTag/LevelTag";
-import type { Question as QuestionType } from "../../services/types";
+import LevelTag from "../../../../shared/ui/LevelTag/LevelTag";
+import type { Question as QuestionType } from "../../../../entities/question/model/types";
 interface QuestionProps {
   question: Pick<
     QuestionType,

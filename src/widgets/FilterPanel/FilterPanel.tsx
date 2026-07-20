@@ -1,11 +1,15 @@
-import FilterButtons from "../FilterButtons/FilterButtons";
+import FilterButtons from "../../features/filter/ui/FilterButtons/FilterButtons";
+
 import styles from "./FilterPanel.module.css";
+
 import type {
   Specializations,
   Skills,
+} from "../../entities/specialization/model/types";
+import type {
   FilterValues,
   FilterActions,
-} from "../../services/types";
+} from "../../entities/skill/model/types";
 
 interface FilterData {
   specializations: Specializations[];

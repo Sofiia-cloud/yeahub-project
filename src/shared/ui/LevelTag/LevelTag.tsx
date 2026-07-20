@@ -1,5 +1,5 @@
 import styles from "./LevelTag.module.css";
-import type { Question } from "../../services/types";
+import type { Question } from "../../../entities/question/model/types";
 interface LevelTagProps {
   question: Pick<Question, "rate" | "complexity">;
 }

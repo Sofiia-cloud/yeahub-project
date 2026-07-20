@@ -1,9 +1,9 @@
 import styles from "./Footer.module.css";
-import figma from "../../images/Figma.png";
-import telegram from "../../images/Telegram_white.png";
-import youtube from "../../images/YouTube_white.png";
-import tiktok from "../../images/TikTok.png";
-import github from "../../images/Github_white.png";
+import figma from "../../shared/icons/Figma.png";
+import telegram from "../../shared/icons/Telegram_white.png";
+import youtube from "../../shared/icons/YouTube_white.png";
+import tiktok from "../../shared/icons/TikTok.png";
+import github from "../../shared/icons/Github_white.png";
 function Footer() {
   return (
     <footer>

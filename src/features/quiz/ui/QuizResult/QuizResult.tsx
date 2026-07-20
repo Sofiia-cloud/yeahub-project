@@ -1,9 +1,8 @@
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../../../../app/store/hooks";
 import styles from "./QuizResult.module.css";
 
 function QuizResult() {
   const { questions, answers } = useAppSelector((state) => state.quiz);
-
 
   const totalQuestions = questions.length;
   const knownCount = Object.values(answers).filter((a) => a === "KNOWN").length;
@@ -14,7 +13,6 @@ function QuizResult() {
   const progress =
     totalQuestions > 0 ? Math.round((knownCount / totalQuestions) * 100) : 0;
 
- 
   const skillStats = questions.reduce(
     (acc, q) => {
       q.questionSkills.forEach((skill) => {
@@ -38,7 +36,6 @@ function QuizResult() {
     [] as Array<{ id: number; title: string; total: number; known: number }>,
   );
 
-
   const circleCircumference = 2 * Math.PI * 45;
   const strokeDasharray = circleCircumference;
   const strokeDashoffset =
@@ -55,9 +52,7 @@ function QuizResult() {
     <div className={styles.container}>
       <h1 className={styles.title}>Умный режим изучения вопросов</h1>
 
-    
       <div className={styles.statsGrid}>
-       
         <div className={styles.statsLeft}>
           <h3 className={styles.sectionTitle}>
             Статистика пройденных вопросов
@@ -110,7 +105,6 @@ function QuizResult() {
           </div>
         </div>
 
-        
         <div className={styles.statsRight}>
           <h3 className={styles.sectionTitle}>Прогресс обучения по навыкам</h3>
           <div className={styles.skillsList}>
@@ -141,7 +135,6 @@ function QuizResult() {
         </div>
       </div>
 
-      
       <div className={styles.questionsSection}>
         <h3 className={styles.sectionTitle}>
           Список пройденных вопросов собеседования

@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./Question.module.css";
-import DetailedQuestion from "../../components/DetailedQuestion/DetailedQuestion";
-import DetailedQuestionInfo from "../../components/DetailedQuestionInfo/DetailedQuestionInfo";
-import { useGetQuestionByIdQuery } from "../../services/api/questionsApi";
+import DetailedQuestion from "../../features/questions/ui/QuestionDetails/DetailedQuestion";
+import DetailedQuestionInfo from "../../features/questions/ui/QuestionInfo/DetailedQuestionInfo";
+import { useGetQuestionByIdQuery } from "../../features/questions/api/questionsApi";
 
 function Question() {
   const { questionId } = useParams<{ questionId: string }>();

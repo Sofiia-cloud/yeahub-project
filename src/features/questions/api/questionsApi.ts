@@ -1,6 +1,9 @@
-
-import { api } from "../api";
-import type { Question, PublicQueryParams, QuestionsResponse } from "../types";
+import { api } from "../../../shared/api/baseApi";
+import type {
+  Question,
+  PublicQueryParams,
+  QuestionsResponse,
+} from "../../../entities/question/model/types";
 
 interface QuestionFilters {
   skills?: number[];
@@ -53,7 +56,7 @@ const questionsApi = api.injectEndpoints({
     getQuestions: builder.query<QuestionsResponse, GetQuestionsArgs>({
       query: ({ filters, currentPage, search }) => {
         const params = buildPublicQuery({ filters, currentPage, search });
-        
+
         return {
           url: "questions/public-questions",
           params,

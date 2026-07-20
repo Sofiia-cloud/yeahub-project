@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
-import logo from "../../images/logo.png";
-import yeahub from "../../images/logo_Yeahub.png";
+import logo from "../../shared/icons/logo.png";
+import yeahub from "../../shared/icons/logo_Yeahub.png";
 function Header() {
   return (
     <header>

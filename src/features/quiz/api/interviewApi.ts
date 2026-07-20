@@ -1,5 +1,5 @@
-import { api } from "./index";
-import type { Interview } from "../types";
+import { api } from "../../../shared/api/baseApi";
+import type { Interview } from "../../../entities/question/model/types";
 
 interface InterviewParams {
   specialization?: number;

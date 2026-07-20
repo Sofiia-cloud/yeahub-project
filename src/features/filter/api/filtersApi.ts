@@ -1,10 +1,10 @@
-import {api} from ".";
+import {api} from "../../../shared/api/baseApi";
 import type {
   Skills,
   Specializations,
   SkillsResponse,
   SpecializationsResponse,
-} from "../types";
+} from "../../../entities/skill/model/types";
 
 const filtersApi = api.injectEndpoints({
   endpoints: (builder) => ({

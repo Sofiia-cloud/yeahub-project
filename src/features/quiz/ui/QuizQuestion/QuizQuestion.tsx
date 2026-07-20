@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../app/store/hooks";
 import {
   finishQuiz,
   nextQuestion,
   previousQuestion,
   setAnswer,
-} from "../../store/slices/quizSlice";
+} from "../../../../app/store/slices/quizSlice";
 import styles from "./QuizQuestion.module.css";
 
 export default function QuizQuestion() {
@@ -38,7 +38,6 @@ export default function QuizQuestion() {
 
   return (
     <div className={styles.container}>
-     
       <div className={styles.questionCard}>
         <h1 className={styles.header}>Вопросы собеседования</h1>
         <div className={styles.progressContainer}>
@@ -54,9 +53,7 @@ export default function QuizQuestion() {
         </div>
       </div>
 
-     
       <div className={styles.questionCard}>
-       
         <div className={styles.topNavigation}>
           <button
             className={styles.arrowButton}
@@ -76,12 +73,10 @@ export default function QuizQuestion() {
 
         <h2 className={styles.questionTitle}>{question.title}</h2>
 
-     
         <button className={styles.showAnswerButton} onClick={toggleAnswer}>
           {isAnswer ? "Скрыть ответ" : "Посмотреть ответ"}
         </button>
 
-      
         {isAnswer && (
           <div
             className={styles.answer}
@@ -89,7 +84,6 @@ export default function QuizQuestion() {
           />
         )}
 
-    
         <div className={styles.answerSection}>
           <button
             className={`${styles.answerButton} ${
@@ -111,7 +105,6 @@ export default function QuizQuestion() {
 
         <hr />
 
-       
         <div className={styles.bottomNavigation}>
           <button
             className={styles.finishButton}
