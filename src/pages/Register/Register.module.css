@@ -1,0 +1,26 @@
+/* src/pages/Register/Register.module.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+/* ===== ОПЦИОНАЛЬНО: Центрирование с отступами для больших экранов ===== */
+@media (min-height: 800px) {
+  .container {
+    padding: 40px;
+  }
+}
+
+/* ===== ОПЦИОНАЛЬНО: Адаптив для мобильных ===== */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+}

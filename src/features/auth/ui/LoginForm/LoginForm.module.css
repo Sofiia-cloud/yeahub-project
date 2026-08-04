@@ -1,0 +1,143 @@
+/* src/features/auth/ui/LoginForm/LoginForm.module.css */
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ===== ПОЛЯ ВВОДА ===== */
+.field {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8e8e8;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  outline: none;
+  background: white;
+}
+
+.input:focus {
+  border-color: #6c5ce7;
+}
+
+.input::placeholder {
+  color: #aaa;
+}
+
+.input.error {
+  border-color: #e17055;
+}
+
+/* ===== ОШИБКИ ВАЛИДАЦИИ ===== */
+.error {
+  display: block;
+  font-size: 13px;
+  color: #e17055;
+  margin-top: 4px;
+}
+
+/* ===== КНОПКА ОТПРАВКИ ===== */
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+  margin-top: 10px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #5a4bd1;
+}
+
+.submitButton:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== ОБЩАЯ ОШИБКА ===== */
+.errorMessage {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fde8e4;
+  color: #e17055;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #888;
+}
+
+.link {
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 480px) {
+  .form {
+    padding: 24px 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .submitButton {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
