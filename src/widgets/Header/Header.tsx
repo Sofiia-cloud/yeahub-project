@@ -4,16 +4,12 @@ import styles from "./Header.module.css";
 import logo from "../../shared/icons/logo.png";
 import yeahub from "../../shared/icons/logo_Yeahub.png";
 import { useAppSelector, useAppDispatch } from "../../app/store/hooks";
-import {
-  selectUser,
-  selectIsAuthenticated,
-} from "../../features/auth/model/authSlice";
+import { selectIsAuthenticated } from "../../features/auth/model/authSlice";
 import { useLogoutMutation } from "../../features/auth/api/authApi";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const [logout] = useLogoutMutation();
 
@@ -42,10 +38,7 @@ function Header() {
         <div className={styles.headerContainer__buttons}>
           {isAuthenticated ? (
             <>
-              <span className={styles.userName}>
-                {user?.username || "Пользователь"}
-              </span>
-              <button onClick={handleLogout} className={styles.logoutBtn}>
+              <button className={styles.loginBtn} onClick={handleLogout}>
                 Выйти
               </button>
             </>

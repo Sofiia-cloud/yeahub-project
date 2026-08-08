@@ -16,44 +16,9 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithReauth: typeof baseQuery = async (
-  args,
-  api,
-  extraOptions,
-) => {
-  let result = await baseQuery(args, api, extraOptions);
-
-  if (result.error?.status === 401) {
-    try {
-      const refreshResult = await baseQuery(
-        {
-          url: "/auth/refresh",
-          method: "POST",
-          credentials: "include",
-        },
-        api,
-        extraOptions,
-      );
-
-      if (refreshResult.data) {
-        result = await baseQuery(args, api, extraOptions);
-      } else {
-        Cookies.remove("accessToken");
-        Cookies.remove("refreshToken");
-      }
-    } catch (error) {
-      console.error(error);
-      Cookies.remove("accessToken");
-      Cookies.remove("refreshToken");
-    }
-  }
-
-  return result;
-};
-
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: baseQueryWithReauth,
+  baseQuery,
   tagTypes: ["User", "Questions", "Filter", "Interview"],
   endpoints: () => ({}),
 });

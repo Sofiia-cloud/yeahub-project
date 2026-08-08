@@ -1,29 +1,51 @@
-
-
-import { useForm } from 'react-hook-form';
-import { useLoginMutation } from '../../api/authApi';
-import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './LoginForm.module.css';
+import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { useAppSelector } from "../../../../app/store/hooks";
+import { useLoginMutation } from "../../api/authApi";
+import { selectIsAuthenticated } from "../../model/authSlice";
+import { useNavigate, useLocation } from "react-router-dom";
+import styles from "./LoginForm.module.css";
 
 interface LoginFormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 export const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>();
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [serverError, setServerError] = useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>();
+  const [login, { isLoading }] = useLoginMutation();
 
-  const from = location.state?.from?.pathname || '/';
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+
+  const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
 
   const onSubmit = async (data: LoginFormData) => {
+    setServerError(null);
+
     try {
-      await login(data).unwrap();
-      navigate(from, { replace: true });
-    } catch (err) {
-      console.error('Login failed:', err);
+      await login({
+        username: data.username,
+        password: data.password,
+      }).unwrap();
+    } catch (err: any) {
+      if (err?.status === 401) {
+        setServerError("Неверное имя пользователя или пароль.");
+      } else {
+        setServerError(err?.data?.message || "Ошибка входа. Попробуйте снова.");
+      }
     }
   };
 
@@ -32,20 +54,18 @@ export const LoginForm = () => {
       <h2 className={styles.title}>Вход</h2>
 
       <div className={styles.field}>
-        <label className={styles.label}>Email</label>
+        <label className={styles.label}>Имя пользователя</label>
         <input
-          type="email"
+          type="text"
           className={styles.input}
-          placeholder="example@mail.com"
-          {...register('email', { 
-            required: 'Email обязателен',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Неверный формат email',
-            },
+          placeholder="username"
+          {...register("username", {
+            required: "Введите имя пользователя",
           })}
         />
-        {errors.email && <span className={styles.error}>{errors.email.message}</span>}
+        {errors.username && (
+          <span className={styles.error}>{errors.username.message}</span>
+        )}
       </div>
 
       <div className={styles.field}>
@@ -54,33 +74,30 @@ export const LoginForm = () => {
           type="password"
           className={styles.input}
           placeholder="••••••••"
-          {...register('password', { 
-            required: 'Пароль обязателен',
-            minLength: {
-              value: 6,
-              message: 'Пароль должен быть не менее 6 символов',
-            },
+          {...register("password", {
+            required: "Пароль обязателен",
           })}
         />
-        {errors.password && <span className={styles.error}>{errors.password.message}</span>}
+        {errors.password && (
+          <span className={styles.error}>{errors.password.message}</span>
+        )}
       </div>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className={styles.submitButton}
         disabled={isLoading}
       >
-        {isLoading ? 'Загрузка...' : 'Войти'}
+        {isLoading ? "Загрузка..." : "Войти"}
       </button>
 
-      {error && (
-        <div className={styles.errorMessage}>
-          Ошибка входа. Проверьте email и пароль.
-        </div>
-      )}
+      {serverError && <div className={styles.errorMessage}>{serverError}</div>}
 
       <p className={styles.footer}>
-        Нет аккаунта? <a href="/register" className={styles.link}>Зарегистрироваться</a>
+        Нет аккаунта?{" "}
+        <a href="/register" className={styles.link}>
+          Зарегистрироваться
+        </a>
       </p>
     </form>
   );
