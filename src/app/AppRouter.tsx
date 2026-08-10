@@ -28,14 +28,7 @@ export const AppRouter = () => {
               </AuthGuard>
             }
           />
-          <Route
-            path="/"
-            element={
-              <AuthGuard requireAuth={false}>
-                <Main />
-              </AuthGuard>
-            }
-          />
+          <Route path="/" element={<Main />} />
           <Route
             path="/:questionId"
             element={

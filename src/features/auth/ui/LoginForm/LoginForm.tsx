@@ -42,7 +42,7 @@ export const LoginForm = () => {
       }).unwrap();
     } catch (err: any) {
       if (err?.status === 401) {
-        setServerError("Неверное имя пользователя или пароль.");
+        setServerError("Неверный email или пароль.");
       } else {
         setServerError(err?.data?.message || "Ошибка входа. Попробуйте снова.");
       }
@@ -54,13 +54,13 @@ export const LoginForm = () => {
       <h2 className={styles.title}>Вход</h2>
 
       <div className={styles.field}>
-        <label className={styles.label}>Имя пользователя</label>
+        <label className={styles.label}>Email</label>
         <input
           type="text"
           className={styles.input}
-          placeholder="username"
+          placeholder="email"
           {...register("username", {
-            required: "Введите имя пользователя",
+            required: "Введите email",
           })}
         />
         {errors.username && (

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { AnswerStatus } from "../../services/types";
+import type { AnswerStatus } from "../../../entities/question/model/types";
 
 export interface InterviewState {
   answers: Record<number, AnswerStatus>;
