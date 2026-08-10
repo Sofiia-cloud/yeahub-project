@@ -3,13 +3,12 @@ import styles from "./Header.module.css";
 
 import logo from "../../shared/icons/logo.png";
 import yeahub from "../../shared/icons/logo_Yeahub.png";
-import { useAppSelector, useAppDispatch } from "../../app/store/hooks";
+import { useAppSelector } from "../../app/store/hooks";
 import { selectIsAuthenticated } from "../../features/auth/model/authSlice";
 import { useLogoutMutation } from "../../features/auth/api/authApi";
 
 function Header() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const [logout] = useLogoutMutation();
 

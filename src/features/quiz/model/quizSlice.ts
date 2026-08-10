@@ -1,5 +1,8 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { AnswerStatus, IQuestion } from "../../services/types";
+import type {
+  AnswerStatus,
+  IQuestion,
+} from "../../../entities/question/model/types";
 
 export interface QuizState {
   questions: IQuestion[];

@@ -1,5 +1,20 @@
 import { useAppSelector } from "../../../../app/store/hooks";
+import type { AnswerStatus } from "../../../../entities/question/model/types";
 import styles from "./QuizResult.module.css";
+
+interface SkillStats {
+  id: number;
+  title: string;
+  total: number;
+  known: number;
+}
+
+interface QuestionSkill {
+  id: number;
+  title: string;
+  description?: string;
+  imageSrc?: string | null;
+}
 
 function QuizResult() {
   const { questions, answers } = useAppSelector((state) => state.quiz);
@@ -13,9 +28,9 @@ function QuizResult() {
   const progress =
     totalQuestions > 0 ? Math.round((knownCount / totalQuestions) * 100) : 0;
 
-  const skillStats = questions.reduce(
-    (acc, q) => {
-      q.questionSkills.forEach((skill) => {
+  const skillStats = questions.reduce<SkillStats[]>((acc, q) => {
+    if (q.questionSkills && Array.isArray(q.questionSkills)) {
+      q.questionSkills.forEach((skill: QuestionSkill) => {
         const existing = acc.find((s) => s.id === skill.id);
         if (existing) {
           existing.total += 1;
@@ -25,23 +40,22 @@ function QuizResult() {
         } else {
           acc.push({
             id: skill.id,
-            title: skill.title,
+            title: skill.title || "Без названия",
             total: 1,
             known: answers[q.id] === "KNOWN" ? 1 : 0,
           });
         }
       });
-      return acc;
-    },
-    [] as Array<{ id: number; title: string; total: number; known: number }>,
-  );
+    }
+    return acc;
+  }, []);
 
   const circleCircumference = 2 * Math.PI * 45;
   const strokeDasharray = circleCircumference;
   const strokeDashoffset =
     circleCircumference - (progress / 100) * circleCircumference;
 
-  const getStatusLabel = (status: string | undefined) => {
+  const getStatusLabel = (status: AnswerStatus | undefined) => {
     if (status === "KNOWN") return { text: "Знаю", className: styles.known };
     if (status === "UNKNOWN")
       return { text: "Не знаю", className: styles.unknown };

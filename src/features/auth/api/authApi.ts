@@ -42,7 +42,7 @@ const authApi = api.injectEndpoints({
         return response?.user || response;
       },
 
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
           const { data } = await queryFulfilled;
 
