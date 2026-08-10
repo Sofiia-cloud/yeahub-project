@@ -31,7 +31,7 @@ export const AppRouter = () => {
           <Route
             path="/"
             element={
-              <AuthGuard requireAuth>
+              <AuthGuard requireAuth={false}>
                 <Main />
               </AuthGuard>
             }
